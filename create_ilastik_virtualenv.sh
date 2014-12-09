@@ -10,15 +10,15 @@
 # the location for the install
 # the repositories will be checked out under this directory, there will also be
 # a new virtualenv in $VIRTUALENVDIR
-ROOT=$HOME/t
+ROOT=$HOME/projects/ilastik/ilastik/ilastikbuild
 VIRTUALENVDIR=${ROOT}/ve
 
-PATCH_BASE=$HOME
+PATCH_BASE=$HOME/projects/ilastik/ilastik-builder
 # options to pass to make, to have parallel builds use -j<num_cpus+1>
-MAKEOPTS="-j13"
+MAKEOPTS=""
 
 # where is cplex?
-CPLEXBASE=
+CPLEXBASE=$HOME/tools/cplex/trial
 
 
 
@@ -29,11 +29,11 @@ GITURL_QIMAGE2NDARRAY=git://github.com/hmeine/qimage2ndarray.git
 GITURL_VIGRA=git://github.com/ukoethe/vigra.git
 GITURL_OPENGM=git://github.com/opengm/opengm.git
 
-ILASTIK_GITHUB=git://github.com/ilastik
+ILASTIK_GITHUB=git://github.com/thanujadax
 GITURL_ILASTIK=$ILASTIK_GITHUB/ilastik.git
 GITURL_VOLUMINA=$ILASTIK_GITHUB/volumina.git
 GITURL_LAZYFLOW=$ILASTIK_GITHUB/lazyflow.git
-GITURL_PGMLINK=$ILASTIK_GITHUB/pgmlink.git
+GITURL_PGMLINK=$ILASTIK_GITHUB/pgmlink-legacy.git
 GITURL_CYLEMON=$ILASTIK_GITHUB/cylemon.git
 
 # CPLEXBASE must be provided by editing this file
@@ -51,11 +51,12 @@ fi
 # build options 
 COMMON_BUILD_OPTIONS="-DCMAKE_INSTALL_PREFIX=${VIRTUALENVDIR}"
 
-LEMON_BUILDOPTIONS="-DILOG_CPLEX_LIBRARY=${CPLEXBASE}/cplex/lib/x86-64_sles10_4.1/static_pic/libcplex.a \
-    -DILOG_CPLEX_INCLUDE_DIR=${CPLEXBASE}/cplex/include/ \
-    -DILOG_CONCERT_INCLUDE_DIR=${CPLEXBASE}/concert/include/ \
-    -DILOG_CONCERT_LIBRARY=${CPLEXBASE}/concert/lib/x86-64_sles10_4.1/static_pic/libconcert.a \
-    -DBUILD_SHARED_LIBS=1"
+# commenting out lemon - thanuja
+#LEMON_BUILDOPTIONS="-DILOG_CPLEX_LIBRARY=${CPLEXBASE}/cplex/lib/x86-64_sles10_4.1/static_pic/libcplex.a \
+ #   -DILOG_CPLEX_INCLUDE_DIR=${CPLEXBASE}/cplex/include/ \
+  #  -DILOG_CONCERT_INCLUDE_DIR=${CPLEXBASE}/concert/include/ \
+   # -DILOG_CONCERT_LIBRARY=${CPLEXBASE}/concert/lib/x86-64_sles10_4.1/static_pic/libconcert.a \
+   # -DBUILD_SHARED_LIBS=1"
 
 # patches are declared as an array
 LEMON_PATCHES=(lemon-1.3-as-needed.patch)
@@ -68,9 +69,10 @@ OPENGM_BUILDOPTIONS="-DBUILD_PYTHON_WRAPPER=1 -DWITH_BOOST=1 -DWITH_HDF5=1 \
     -DWITH_CPLEX=1 -DCPLEX_ROOT_DIR=${CPLEXBASE} \
     -DOPENGM_PYTHON_MODULE_INSTALL_DIR=${VIRTUALENVDIR}/lib/python2.7/site-packages"
 
-PGMLINK_BUILDOPTIONS="-DCPLEX_ROOT_DIR=${CPLEXBASE} \
-    -DVIGRA_INCLUDE_DIR=${VIRTUALENVDIR}/include/ \
-    -DVIGRA_NUMPY_CORE_LIBRARY=${VIRTUALENVDIR}/lib/python2.7/site-packages/vigra/vigranumpycore.so"
+# commenting out pgm link - thanuja
+#PGMLINK_BUILDOPTIONS="-DCPLEX_ROOT_DIR=${CPLEXBASE} \
+ #   -DVIGRA_INCLUDE_DIR=${VIRTUALENVDIR}/include/ \
+  #  -DVIGRA_NUMPY_CORE_LIBRARY=${VIRTUALENVDIR}/lib/python2.7/site-packages/vigra/vigranumpycore.so"
 
 set -e
 export LC_ALL=POSIX

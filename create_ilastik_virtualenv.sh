@@ -24,10 +24,10 @@ CPLEXBASE=$HOME/tools/cplex/trial
 
 
 # where to get the sources?
-HGURL_LEMON=http://lemon.cs.elte.hu/hg/lemon-main
+#HGURL_LEMON=http://lemon.cs.elte.hu/hg/lemon-main
 GITURL_QIMAGE2NDARRAY=git://github.com/hmeine/qimage2ndarray.git
-GITURL_VIGRA=git://github.com/ukoethe/vigra.git
-GITURL_OPENGM=git://github.com/opengm/opengm.git
+#GITURL_VIGRA=git://github.com/ukoethe/vigra.git
+#GITURL_OPENGM=git://github.com/opengm/opengm.git
 
 ILASTIK_GITHUB=git://github.com/thanujadax
 GITURL_ILASTIK=$ILASTIK_GITHUB/ilastik.git
